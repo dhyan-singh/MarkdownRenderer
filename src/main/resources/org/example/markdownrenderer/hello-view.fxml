@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
+
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.markdownrenderer.HelloController">
     <padding>
@@ -12,5 +13,8 @@
     </padding>
 
     <Label fx:id="welcomeText"/>
-    <Button text="Markdown Renderer!" onAction="#onHelloButtonClick"/>
+    <Button text="markdown Renderer!" onAction="#onHelloButtonClick"/>
+    <Button text="markdown Renderer!" onAction="#onHelloButtonClick"/>
+    <Button text="markdown Renderer!" onAction="#onHelloButtonClick"/>
+    <Button text="markdown Renderer!" onAction="#onHelloButtonClick"/>
 </VBox>
