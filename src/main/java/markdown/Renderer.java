@@ -4,9 +4,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import java.util.Arrays;
-
-public class ElementToFX {
+public class Renderer {
     public static Text TokenToText(MarkdownElement e) {
         Text t = new Text(e.content());
         if (e.format() == MarkdownElementFormat.BULLET_POINT) {
