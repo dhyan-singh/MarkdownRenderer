@@ -2,6 +2,7 @@ package org.example.markdownrenderer;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Camera;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
@@ -18,6 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import markdown.ElementToFX;
 import markdown.MarkdownElement;
 import markdown.MarkdownElementFormat;
 import markdown.Parser;
@@ -31,33 +33,20 @@ import java.util.stream.Collectors;
 
 public class HomeApplication extends Application {
 
-    public static Text TokenToText(MarkdownElement e) {
-        Text t = new Text(e.content());
-        switch (e.format()) {
-            case HEADER1 -> t.setFont(Font.font("Arial", FontWeight.BOLD, 36));
-            case HEADER2 -> t.setFont(Font.font("Arial", FontWeight.BOLD, 32));
-            case HEADER3 -> t.setFont(Font.font("Arial", FontWeight.BOLD, 28));
-
-            default -> t.setFont(Font.font("Arial"));
-        }
-        return t;
-    }
-
 
     private Parent createContent() {
         var v = new VBox();
-        var t = new Text("ONE LINE");
-        t.setFont(Font.font("Arial", FontWeight.BOLD, 36));
+        v.setPadding(new Insets(12));
+        v.setSpacing(1);
         try {
             Parser p = new Parser("./resources/test.md");
             List<MarkdownElement> elements = p.parse();
             elements.stream()
-                    .map(HomeApplication::TokenToText)
+                    .map(ElementToFX::TokenToText)
                     .forEach(v.getChildren()::add);
         } catch (IOException e) {
             System.out.println("ERROR OCCURRED HERE");
         }
-        v.getChildren().add(t);
         return v;
     }
 

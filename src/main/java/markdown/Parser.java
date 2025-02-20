@@ -25,8 +25,13 @@ public class Parser {
 
     public List<MarkdownElement> parse() {
         for (var line : lines) {
+            if (line.isBlank()) continue;
             switch (line.split(" ")[0]) {
                 case "#" -> elements.add(new MarkdownElement(MarkdownElementFormat.HEADER1, line.substring(2)));
+                case "##" -> elements.add(new MarkdownElement(MarkdownElementFormat.HEADER2, line.substring(3)));
+                case "###" -> elements.add(new MarkdownElement(MarkdownElementFormat.HEADER3, line.substring(4)));
+                case "-" -> elements.add(new MarkdownElement(MarkdownElementFormat.BULLET_POINT, line.split(" ", 2)[1]));
+                default -> elements.add(new MarkdownElement(MarkdownElementFormat.TEXT, line.trim()));
             }
         }
         return elements;
